@@ -1,4 +1,6 @@
-﻿namespace Moravia.Homework
+﻿using Moravia.Homework;
+
+namespace AIKIT.Documents
 {
     interface IDocument
     {

@@ -1,35 +1,42 @@
-﻿namespace Moravia.Homework
+﻿using AIKIT.Documents;
+using AIKIT.DocumentTypes;
+namespace Moravia.Homework
 {
     class DocumentConverter
     {
-        public void Convert(string source, string target)
+        private IDocumentType _inputDocType;
+        private IDocumentType _outputDocType;
+        private IDocument _inputDoc;
+        private IDocument _outputDoc;
+
+        public DocumentConverter(string source, string target)
         {
-            IDocument documentSource = GetDocument(source);
-            IDocumentType documentSourceType = GetDocumentType(source);
-            var doc = documentSource.Read();
-            IDocument documentTarget = GetDocument(target);
-            IDocumentType documentTargetType = GetDocumentType(target);
-            documentTarget.Write(doc);
+            _inputDocType = GetDocumentType(source);
+            _outputDocType = GetDocumentType(target);
+            _inputDoc = GetDocument(source, _inputDocType);
+            _outputDoc = GetDocument(source, _outputDocType);
+        }
+        public void Convert()
+        {
+            _outputDoc.Save(_inputDoc.Load());
         }
 
-        private IDocument GetDocument(string path)
+        private IDocument GetDocument(string path, IDocumentType _docType)
         {
             if (path.StartsWith("http"))
-                return new HttpDocument(path);
-            else if (path.StartsWith("cloud"))
-                return new CloudDocument(path);
+                return new HttpDocument(path, _docType);
             else
-                return new FileSystemDocument(path);
+                return new FileSystemDocument(path, _docType);
         }
 
         private IDocumentType GetDocumentType(string path)
         {
             if (path.EndsWith(".json"))
-                return new FileSystemDocumentTarget(path);
+                return new JsonDocument();
             else if (path.EndsWith(".xml"))
-                return new CloudDocumentTarget(path);
+                return new XMLDocument();
             else
-                return new HttpDocumentTarget(path);
+                throw new NotImplementedException();
         }
     }
 }
