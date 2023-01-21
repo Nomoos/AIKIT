@@ -16,14 +16,8 @@ namespace AIKIT.Documents
         {
             // Read a xml document from a website via HTTP
             HttpClient client = new();
-            //_sourceType.Deserialize(client.GetAsync(_source).Result.ToString());
-
-
-            return new Document
-            {
-                Title = "Title",
-                Text = "Text"
-            };
+            Document doc = _type.Deserialize(client.GetStringAsync(_path).Result);
+            return doc;
         }
 
         public void Save(Document doc)
