@@ -34,7 +34,7 @@ namespace Moravia.Homework
             if (path.EndsWith(".json"))
                 return new JsonDocument();
             else if (path.EndsWith(".xml"))
-                return new XMLDocument();
+                return new XmlDocument();
             else
                 throw new NotImplementedException();
         }

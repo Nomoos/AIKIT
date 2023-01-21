@@ -1,4 +1,6 @@
-﻿namespace Moravia.Homework
+﻿using System.Xml.Serialization;
+
+namespace Moravia.Homework
 {
     public class Document
     {

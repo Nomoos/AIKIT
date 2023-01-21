@@ -1,17 +1,18 @@
 ﻿using Moravia.Homework;
+using Newtonsoft.Json;
 
 namespace AIKIT.DocumentTypes
 {
-    internal class JsonDocument : IDocumentType
+    public class JsonDocument : IDocumentType
     {
         public Document Deserialize(string input)
         {
-            throw new NotImplementedException();
+            return JsonConvert.DeserializeObject<Document>(input);
         }
 
         public string Serialize(Document doc)
         {
-            throw new NotImplementedException();
+            return JsonConvert.SerializeObject(doc);
         }
     }
 }
