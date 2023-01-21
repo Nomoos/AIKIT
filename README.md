@@ -1,5 +1,5 @@
 # Refactor notes:
-###### Unnecessary imports:
+## Unnecessary imports:
 The original code imports several unnecessary namespaces, such as System.Collections.Generic, System.Reflection.Metadata, and static System.Net.WebRequestMethods. These imports are not used in the code and can be removed.
 
 ## FileStream and StreamReader are not properly disposed:
