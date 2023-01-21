@@ -4,30 +4,32 @@
     {
         public void Convert(string source, string target)
         {
-            IDocumentSource documentSource = GetDocumentSource(source);
+            IDocument documentSource = GetDocument(source);
+            IDocumentType documentSourceType = GetDocumentType(source);
             var doc = documentSource.Read();
-            IDocumentTarget documentTarget = GetDocumentTarget(target);
+            IDocument documentTarget = GetDocument(target);
+            IDocumentType documentTargetType = GetDocumentType(target);
             documentTarget.Write(doc);
         }
 
-        private IDocumentSource GetDocumentSource(string source)
+        private IDocument GetDocument(string path)
         {
-            if (source.StartsWith("http"))
-                return new HttpDocumentSource(source);
-            else if (source.StartsWith("cloud"))
-                return new CloudDocumentSource(source);
+            if (path.StartsWith("http"))
+                return new HttpDocument(path);
+            else if (path.StartsWith("cloud"))
+                return new CloudDocument(path);
             else
-                return new FileSystemDocumentSource(source);
+                return new FileSystemDocument(path);
         }
 
-        private IDocumentTarget GetDocumentTarget(string target)
+        private IDocumentType GetDocumentType(string path)
         {
-            if (target.EndsWith(".json"))
-                return new FileSystemDocumentTarget(target);
-            else if (target.EndsWith(".xml"))
-                return new CloudDocumentTarget(target);
+            if (path.EndsWith(".json"))
+                return new FileSystemDocumentTarget(path);
+            else if (path.EndsWith(".xml"))
+                return new CloudDocumentTarget(path);
             else
-                return new HttpDocumentTarget(target);
+                return new HttpDocumentTarget(path);
         }
     }
 }

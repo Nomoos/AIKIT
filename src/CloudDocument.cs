@@ -1,13 +1,13 @@
 ﻿namespace Moravia.Homework
 {
-    class CloudDocumentSource : IDocumentSource
+    class CloudDocument : IDocument
     {
         private string _source;
-        public CloudDocumentSource(string source)
+        public CloudDocument(string source)
         {
             _source = source;
         }
-        public Document Read()
+        public Document Load()
         {
             // Code to read a document from a cloud storage service
             return new Document
@@ -15,6 +15,11 @@
                 Title = "Title",
                 Text = "Text"
             };
+        }
+
+        public void Save(Document doc)
+        {
+            throw new NotImplementedException();
         }
     }
 }

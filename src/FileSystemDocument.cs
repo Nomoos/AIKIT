@@ -2,10 +2,10 @@
 
 namespace Moravia.Homework
 {
-    class FileSystemDocumentSource : IDocumentSource
+    class FileSystemDocument : IDocument
     {
         private string _source;
-        public FileSystemDocumentSource(string source)
+        public FileSystemDocument(string source)
         {
             _source = source;
         }
@@ -18,6 +18,11 @@ namespace Moravia.Homework
                 Title = xdoc.Root.Element("title").Value,
                 Text = xdoc.Root.Element("text").Value
             };
+        }
+
+        public void Write(Document doc)
+        {
+            throw new NotImplementedException();
         }
     }
 }
