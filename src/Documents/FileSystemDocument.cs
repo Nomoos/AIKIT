@@ -2,7 +2,7 @@
 
 namespace AIKIT.Documents
 {
-    class FileSystemDocument : IDocument
+    public class FileSystemDocument : IDocument
     {
         private string _path;
         private DocumentTypes.IDocumentType _type;

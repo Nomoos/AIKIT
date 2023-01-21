@@ -2,7 +2,7 @@
 
 namespace AIKIT.Documents
 {
-    class HttpDocument : IDocument
+    public class HttpDocument : IDocument
     {
         private string _path;
         private DocumentTypes.IDocumentType _type;
