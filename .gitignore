@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+tests/TestData/TestOutput.json
+tests/TestData/TestOutput.xml
